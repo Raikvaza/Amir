@@ -1,24 +1,24 @@
 const Presentation = () => {
     
     return (
-        <div className="w-full h-[520px] relative bg-yellow">
+        <div className="w-full h-[520px] relative bg-brown-gold">
                 video content
                 <div 
                     className="
-                        bg-black 
+                        bg-dark-gold 
                         absolute 
                         bottom-0 
                         left-5 
-                        w-[200px] 
+                        w-[250px] 
                         h-[300px]
-                        flex flex-col justify-evenly
+                        flex flex-col justify-around
                         items-center
                     "
                     >
-                    <div className="text-yellow w-[60%] text-center">
+                    <div className="text-xl text-white-gold w-[100%] text-center">
                         Some text for the future
                     </div>
-                    <button className="p-5 font-bold text-yellow border-[1px] rounded-md">Discover</button>
+                    <button className="px-5 py-2 font-bold text-white-gold border-[1px]">Discover</button>
                 </div>
         </div>
     )
