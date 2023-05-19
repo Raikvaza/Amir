@@ -1,27 +1,46 @@
 const Presentation = () => {
-    
-    return (
-        <div className="w-full h-[520px] relative bg-brown-gold">
-                video content
-                <div 
-                    className="
-                        bg-dark-gold 
+	return (
+		<div
+			className="
+                relative 
+                h-[520px] 
+                w-full 
+                bg-brown-gold"
+		>
+			video content
+			<div
+				className="
                         absolute 
                         bottom-0 
                         left-5 
-                        w-[250px] 
-                        h-[300px]
-                        flex flex-col justify-around
-                        items-center
-                    "
-                    >
-                    <div className="text-xl text-white-gold w-[100%] text-center">
-                        Some text for the future
-                    </div>
-                    <button className="px-5 py-2 font-bold text-white-gold border-[1px]">Discover</button>
-                </div>
-        </div>
-    )
-}
+                        flex 
+                        h-[300px] 
+                        w-[250px]
+                        flex-col items-center justify-around
+                        bg-dark-gold"
+			>
+				<div
+					className="
+                        w-[100%]
+                        text-center
+                        text-xl
+                      text-white-gold"
+				>
+					Some text for the future
+				</div>
+				<button
+					className="
+                        border-[1px] 
+                        px-5 
+                        py-2 
+                        font-bold
+                      text-white-gold"
+				>
+					Discover
+				</button>
+			</div>
+		</div>
+	);
+};
 
 export default Presentation;

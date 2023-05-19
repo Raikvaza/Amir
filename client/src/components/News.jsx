@@ -1,20 +1,55 @@
-import Card from "./Card";
+import Card from './Card';
 
 const News = () => {
-    return (
-        <div className="w-full flex flex-col md:flex-row flex-wrap justify-center pb-5 items-center bg-white">
-            <div className="w-[80%] font-bold text-[20px] text-center py-4 border-b-[2px] border-b-brown-gold">
-                CURRENT HIGHLIGHTS
-            </div>
-            <Card type="New/Collection" title="Something happened"/>
-            <Card type="News" title="Something happened"/>
+	return (
+		<div
+			className="
+                flex 
+                w-full 
+                flex-col 
+                flex-wrap 
+                items-center 
+                justify-center 
+                bg-white 
+                pb-5 
+                md:flex-row"
+		>
+			<div
+				className="
+                    w-[80%] 
+                    border-b-[2px] 
+                    border-b-brown-gold 
+                    py-4 
+                    text-center 
+                    text-[20px] 
+                    font-bold"
+			>
+				CURRENT HIGHLIGHTS
+			</div>
+			<Card type="New/Collection" title="Something happened" />
+			<Card type="News" title="Something happened" />
 
-            <Card type="News" title="Something happened"/>
-            <div className="md:flex-[100%] flex w-full justify-center items-center">
-                <button className=" py-2 px-10 border-[2px] border-white-gold">More</button>
-            </div>
-        </div>
-    )
-}
+			<Card type="News" title="Something happened" />
+			<div
+				className="
+                    flex 
+                    w-full 
+                    items-center 
+                    justify-center 
+                    md:flex-[100%]"
+			>
+				<button
+					className=" 
+                    border-[2px] 
+                    border-white-gold 
+                    px-10 
+                    py-2"
+				>
+					More
+				</button>
+			</div>
+		</div>
+	);
+};
 
 export default News;
