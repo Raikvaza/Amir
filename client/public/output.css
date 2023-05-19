@@ -683,8 +683,36 @@ video {
   bottom: -1.5rem;
 }
 
+.left-\[1\/5\] {
+  left: 1/5;
+}
+
+.left-\[1\/4\] {
+  left: 1/4;
+}
+
+.left-\[1\/5\%\] {
+  left: 1/5%;
+}
+
+.left-\[20\%\] {
+  left: 20%;
+}
+
+.left-\[18\%\] {
+  left: 18%;
+}
+
+.left-\[15\%\] {
+  left: 15%;
+}
+
 .z-10 {
   z-index: 10;
+}
+
+.z-20 {
+  z-index: 20;
 }
 
 .m-0 {
@@ -754,6 +782,10 @@ video {
 
 .mr-20 {
   margin-right: 5rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 
 .block {
@@ -826,6 +858,46 @@ video {
 
 .h-\[15\%\] {
   height: 15%;
+}
+
+.h-\[70\%\] {
+  height: 70%;
+}
+
+.h-\[70px\] {
+  height: 70px;
+}
+
+.h-\[50\%\] {
+  height: 50%;
+}
+
+.h-\[100\%\] {
+  height: 100%;
+}
+
+.h-\[auto\] {
+  height: auto;
+}
+
+.h-\[80\%\] {
+  height: 80%;
+}
+
+.h-\[60vh\] {
+  height: 60vh;
+}
+
+.h-\[70vh\] {
+  height: 70vh;
+}
+
+.h-\[80vh\] {
+  height: 80vh;
+}
+
+.h-\[250px\] {
+  height: 250px;
 }
 
 .min-h-screen {
@@ -964,6 +1036,14 @@ video {
   width: calc(${slideWidth}*16 * ${slideCount});
 }
 
+.w-\[300px\] {
+  width: 300px;
+}
+
+.w-\[400px\] {
+  width: 400px;
+}
+
 .flex-none {
   flex: none;
 }
@@ -1092,12 +1172,24 @@ video {
   justify-content: space-around;
 }
 
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-5 {
+  gap: 1.25rem;
+}
+
+.gap-10 {
+  gap: 2.5rem;
 }
 
 .overflow-hidden {
@@ -1140,6 +1232,10 @@ video {
   border-width: 10px;
 }
 
+.border-\[4px\] {
+  border-width: 4px;
+}
+
 .border-b-\[2px\] {
   border-bottom-width: 2px;
 }
@@ -1156,6 +1252,11 @@ video {
 .border-red {
   --tw-border-opacity: 1;
   border-color: rgb(220 68 146 / var(--tw-border-opacity));
+}
+
+.border-brown-gold {
+  --tw-border-opacity: 1;
+  border-color: rgb(157 141 125 / var(--tw-border-opacity));
 }
 
 .border-b-brown-gold {
@@ -1221,6 +1322,11 @@ video {
 .bg-amber-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(253 230 138 / var(--tw-bg-opacity));
+}
+
+.bg-green-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
 }
 
 .object-cover {
@@ -1306,6 +1412,16 @@ video {
   padding-bottom: 8px;
 }
 
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
 .pb-5 {
   padding-bottom: 1.25rem;
 }
@@ -1350,6 +1466,14 @@ video {
   font-size: 1.2rem;
 }
 
+.text-\[1\.5rem\] {
+  font-size: 1.5rem;
+}
+
+.text-\[2rem\] {
+  font-size: 2rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1374,6 +1498,18 @@ video {
   line-height: 1.6;
 }
 
+.leading-3 {
+  line-height: .75rem;
+}
+
+.leading-5 {
+  line-height: 1.25rem;
+}
+
+.leading-10 {
+  line-height: 2.5rem;
+}
+
 .text-brown-gold {
   --tw-text-opacity: 1;
   color: rgb(157 141 125 / var(--tw-text-opacity));
@@ -1392,6 +1528,10 @@ video {
 .text-white-gold {
   --tw-text-opacity: 1;
   color: rgb(226 222 217 / var(--tw-text-opacity));
+}
+
+.opacity-0 {
+  opacity: 0;
 }
 
 .shadow-md {
@@ -1442,9 +1582,26 @@ video {
   transition-duration: 500ms;
 }
 
+.duration-200 {
+  transition-duration: 200ms;
+}
+
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ease-in {
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
 .after\:absolute::after {
   content: var(--tw-content);
   position: absolute;
+}
+
+.after\:relative::after {
+  content: var(--tw-content);
+  position: relative;
 }
 
 .after\:flex::after {
@@ -1455,6 +1612,11 @@ video {
 .after\:h-full::after {
   content: var(--tw-content);
   height: 100%;
+}
+
+.after\:h-\[70\%\]::after {
+  content: var(--tw-content);
+  height: 70%;
 }
 
 .after\:w-full::after {
@@ -1513,6 +1675,31 @@ video {
 .after\:content-\[\'Read_more\'\]::after {
   --tw-content: 'Read more';
   content: var(--tw-content);
+}
+
+.hover\:border-white:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.hover\:border-brown-gold:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(157 141 125 / var(--tw-border-opacity));
+}
+
+.hover\:px-12:hover {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.hover\:py-3:hover {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.hover\:px-11:hover {
+  padding-left: 2.75rem;
+  padding-right: 2.75rem;
 }
 
 .hover\:text-white:hover {

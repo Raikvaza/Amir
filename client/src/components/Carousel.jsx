@@ -5,16 +5,18 @@ const _items = [
 		player: {
 			title: 'Efren Reyes',
 			desc:
-				'Known as "The Magician", Efren Reyes is well regarded by many professionals as the greatest all around player of all time.',
+				'Known as "The Magician", Efren Reyes is well regarded by many professionals as the greatest.',
 			image: '../assets/nomad.png',
+			button: '4 models',
 		},
 	},
 	{
 		player: {
 			title: "Ronnie O'Sullivan",
 			desc:
-				"Ronald Antonio O'Sullivan is a six-time world champion and is the most successful player in the history of snooker.",
+				"Ronald Antonio O'Sullivan is a six-time world champion and is the most successful player.",
 			image: '../assets/classima.png',
+			button: '4 models',
 		},
 	},
 	{
@@ -23,6 +25,7 @@ const _items = [
 			desc:
 				'The "South Dakota Kid" is hearing-impaired and uses a hearing aid, but it has not limited his ability.',
 			image: '../assets/shanyrak.png',
+			button: '4 models',
 		},
 	},
 ];
@@ -47,13 +50,13 @@ const createItem = (position, idx) => {
 	switch (position) {
 		case length - 1:
 		case length + 1:
-			item.styles = { ...item.styles, filter: 'grayscale(1)' };
+			// item.styles = { ...item.styles, filter: 'grayscale(1)' };
 			break;
 		case length:
 			break;
 		default:
 			// CHANGE OPACITY TO 0
-			item.styles = { ...item.styles, opacity: 10 };
+			item.styles = { ...item.styles, opacity: 0 };
 			break;
 	}
 
@@ -64,28 +67,31 @@ const CarouselSlideItem = ({ pos, idx, activeIdx }) => {
 	const item = createItem(pos, idx, activeIdx);
 
 	return (
+		// ITEM CONTAINER
 		<li
 			className={`
                 absolute
                 flex
-                h-[${slideWidth}rem]
                 w-[${slideWidth}rem]
+                h-full
                 flex-col
                 items-center
-                justify-center
+                justify-evenly
                 bg-black
-                p-4
+                p-1
                 transition-all
                 duration-300
             `}
-			style={{ ...item.styles, height: `${slideWidth}rem` }}
+			style={{ ...item.styles }}
 		>
+			{/* ITEM IMAGE */}
 			<div
 				className="
                     after:ease-ease
                     relative
                     flex
-                    h-full
+                    
+                    h-[50%]
                     w-full
                     cursor-zoom-in
                     items-center
@@ -106,23 +112,29 @@ const CarouselSlideItem = ({ pos, idx, activeIdx }) => {
 			>
 				<img
 					className={`
-                    ease-ease
+                        ease-ease
                         ${activeIdx == idx ? 'scale-[60%] ' : 'scale-50'}
                         object-cover
-                        transition-all
+                        transition-all 
                         duration-500
+                        
                     `}
 					src={item.player.image}
 					alt={item.player.title}
 				/>
 			</div>
-			<div className="absolute bottom-[-2.5rem] h-[10%] bg-amber-200">
-				<h4 className="mx-0 mb-0 mt-[0.7rem] text-center uppercase">
-					{item.player.title}
-				</h4>
-				<p className="mx-0 mb-0 mt-[0.7rem] text-[1.2rem] leading-[1.6]">
+			{/* ITEM TEXT */}
+			<div className="relative flex flex-col items-center justify-center bg-amber-200 px-3 py-2">
+				<h4 className="mx-0 mb-0 mt-[0.7rem] text-center uppercase">{item.player.title}</h4>
+				<p className="mx-0 mb-0 mt-[0.7rem] text-center text-[1.2rem] leading-[1.6]">
 					{item.player.desc}
 				</p>
+			</div>
+			{/* ITEM BUTTON */}
+			<div>
+				<button className="border-[2px] border-brown-gold px-10 py-2 text-white-gold duration-200 ease-in-out hover:border-white hover:px-11">
+					{item.player.button}
+				</button>
 			</div>
 		</li>
 	);
@@ -135,7 +147,7 @@ const Carousel = () => {
 	const [isTicking, setIsTicking] = React.useState(false);
 	const [activeIdx, setActiveIdx] = React.useState(0);
 	const bigLength = items.length;
-
+	// HANDLING LEFT ARROW
 	const prevClick = (jump = 1) => {
 		if (!isTicking) {
 			setIsTicking(true);
@@ -144,7 +156,7 @@ const Carousel = () => {
 			});
 		}
 	};
-
+	// HANDLING RIGHT ARROW
 	const nextClick = (jump = 1) => {
 		if (!isTicking) {
 			setIsTicking(true);
@@ -153,21 +165,22 @@ const Carousel = () => {
 			});
 		}
 	};
-
+	// HANDLING DOT CLICKS
 	const handleDotClick = (idx) => {
 		if (idx < activeIdx) prevClick(activeIdx - idx);
 		if (idx > activeIdx) nextClick(idx - activeIdx);
 	};
-
+	// TICKING
 	React.useEffect(() => {
 		if (isTicking) sleep(300).then(() => setIsTicking(false));
 	}, [isTicking]);
-
+	// UPDATING ACTIVE INDEX
 	React.useEffect(() => {
 		setActiveIdx((length - (items[0] % length)) % length);
 	}, [items]);
 
 	return (
+		// MAIN CONTAINER
 		<div
 			className="
                 relative
@@ -178,15 +191,19 @@ const Carousel = () => {
                 justify-center 
                 bg-red"
 		>
+			{/* INNER CONTAINER */}
 			<div
 				className={`
                     relative 
-                    h-[40rem] 
                     bg-yellow
                     p-2
                 `}
-				style={{ width: `calc(${slideWidth}rem*${slideCount})` }}
+				style={{
+					width: `calc(${slideWidth}rem * ${slideCount})`,
+					height: `calc(${slideWidth}rem / 0.75)`,
+				}}
 			>
+				{/* BUTTON LEFT */}
 				<button
 					className="
                         absolute 
@@ -212,7 +229,7 @@ const Carousel = () => {
                             p-[3px]"
 					/>
 				</button>
-				{/* OVERFLOW */}
+				{/* OVERFLOW ITEMS CONTAINER */}
 				<div
 					className="
                         relative
@@ -222,15 +239,18 @@ const Carousel = () => {
                         bg-grey
                         "
 				>
+					{/* ITEMS LIST */}
+					{/* Apply left-2/4 to move left side of the div to the center */}
+					{/* Then apply -translate-x-2/4 to translate the entire div to the center */}
 					<ul
 						className={`
                             absolute
-                            left-2/4 
-                            m-0
-                            h-full
-                            -translate-x-2/4 
+                            left-2/4
+                            m-0 
+                            h-full 
+                            -translate-x-2/4
                             list-none
-                            p-0
+                            p-0 
                         `}
 						style={{ width: `calc((${slideCount} + 0.5) * ${slideWidth}rem * 2)` }}
 					>
@@ -239,6 +259,7 @@ const Carousel = () => {
 						))}
 					</ul>
 				</div>
+				{/* BUTTON RIGHT */}
 				<button
 					className="
                         absolute 
@@ -263,6 +284,7 @@ const Carousel = () => {
                             p-[3px]"
 					/>
 				</button>
+				{/* DOT NAVIGATION */}
 				<div
 					className="
                         absolute

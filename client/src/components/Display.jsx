@@ -5,19 +5,19 @@ const Display = () => {
 		// DISPLAY CONTAINER
 		<div
 			className="
-        flex
-        w-full 
-        flex-col 
-        items-center 
-        justify-center 
-        bg-brown-gold"
+				flex
+				w-full 
+				flex-col 
+				items-center 
+				justify-center 
+				bg-brown-gold"
 		>
 			{/* DISPLAY TEXT */}
 			<div
 				className="
-          py-[10px] 
-          text-2xl 
-          text-white"
+					py-[10px] 
+					text-2xl 
+					text-white"
 			>
 				<span className="font-bold">AMIR</span> WATCHES
 			</div>
