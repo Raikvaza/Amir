@@ -1,8 +1,9 @@
 import React from 'react';
-
-const _items = [
+import { ChevronLeftIcon } from '@heroicons/react/24/outline';
+import { ChevronRightIcon } from '@heroicons/react/24/outline';
+const watches = [
 	{
-		player: {
+		watch: {
 			title: 'Efren Reyes',
 			desc:
 				'Known as "The Magician", Efren Reyes is well regarded by many professionals as the greatest.',
@@ -11,16 +12,15 @@ const _items = [
 		},
 	},
 	{
-		player: {
+		watch: {
 			title: "Ronnie O'Sullivan",
-			desc:
-				"Ronald Antonio O'Sullivan is a six-time world champion and is the most successful player.",
+			desc: "Ronald Antonio O'Sullivan is a six-time world champion and is the most successful watch.",
 			image: '../assets/classima.png',
 			button: '4 models',
 		},
 	},
 	{
-		player: {
+		watch: {
 			title: 'Shane Van Boening',
 			desc:
 				'The "South Dakota Kid" is hearing-impaired and uses a hearing aid, but it has not limited his ability.',
@@ -30,10 +30,10 @@ const _items = [
 	},
 ];
 
-const length = _items.length;
+const length = watches.length;
 const slideWidth = 30;
 const slideCount = 3;
-_items.push(..._items);
+watches.push(...watches); // Double the amount of watches for infinite scroll
 
 const sleep = (ms = 0) => {
 	return new Promise((resolve) => setTimeout(resolve, ms));
@@ -43,20 +43,23 @@ const createItem = (position, idx) => {
 	const item = {
 		styles: {
 			transform: `translateX(calc(${position * slideWidth}rem))`,
+			width: `${slideWidth}rem`,
 		},
-		player: _items[idx].player,
+		watch: watches[idx].watch, // Create an item with corresponding INFO from watches array
 	};
 
 	switch (position) {
+		//VISIBLE ITEMS left and right
 		case length - 1:
 		case length + 1:
-			// item.styles = { ...item.styles, filter: 'grayscale(1)' };
+			item.styles = { ...item.styles, zIndex: '100' };
 			break;
 		case length:
+			//Item in the middle
 			break;
 		default:
 			// CHANGE OPACITY TO 0
-			item.styles = { ...item.styles, opacity: 0 };
+			item.styles = { ...item.styles, opacity: '0', zIndex: '-100' };
 			break;
 	}
 
@@ -72,12 +75,11 @@ const CarouselSlideItem = ({ pos, idx, activeIdx }) => {
 			className={`
                 absolute
                 flex
-                w-[${slideWidth}rem]
                 h-full
                 flex-col
                 items-center
                 justify-evenly
-                bg-black
+                bg-brown-gold
                 p-1
                 transition-all
                 duration-300
@@ -113,39 +115,80 @@ const CarouselSlideItem = ({ pos, idx, activeIdx }) => {
 				<img
 					className={`
                         ease-ease
-                        ${activeIdx == idx ? 'scale-[60%] ' : 'scale-50'}
+                        ${pos == length ? 'scale-[55%] ' : 'scale-50'}
                         object-cover
                         transition-all 
                         duration-500
                         
                     `}
-					src={item.player.image}
-					alt={item.player.title}
+					src={item.watch.image}
+					alt={item.watch.title}
 				/>
 			</div>
 			{/* ITEM TEXT */}
-			<div className="relative flex flex-col items-center justify-center bg-amber-200 px-3 py-2">
-				<h4 className="mx-0 mb-0 mt-[0.7rem] text-center uppercase">{item.player.title}</h4>
-				<p className="mx-0 mb-0 mt-[0.7rem] text-center text-[1.2rem] leading-[1.6]">
-					{item.player.desc}
+			<div
+				className="
+				relative 
+				flex 
+				flex-col 
+				items-center 
+				justify-center 
+				bg-brown-gold 
+				px-3 
+				py-2"
+			>
+				<h4
+					className="
+					mx-0 
+					mb-0 
+					mt-[0.7rem] 
+					text-center 
+					uppercase"
+				>
+					{item.watch.title}
+				</h4>
+				<p
+					className="
+					mx-0 
+					mb-0 
+					mt-[0.7rem] 
+					text-center 
+					text-[1.2rem] 
+					leading-[1.6]"
+				>
+					{item.watch.desc}
 				</p>
 			</div>
 			{/* ITEM BUTTON */}
 			<div>
-				<button className="border-[2px] border-brown-gold px-10 py-2 text-white-gold duration-200 ease-in-out hover:border-white hover:px-11">
-					{item.player.button}
+				<button
+					className="
+					border-[2px] 
+					border-white-gold
+					px-12 
+					py-2 
+					text-lg 
+					text-white-gold
+					duration-200 
+					ease-in-out 
+					hover:border-white hover:px-14 hover:text-white
+					
+					"
+				>
+					{item.watch.button}
 				</button>
 			</div>
 		</li>
 	);
 };
 
-const keys = Array.from(Array(_items.length).keys());
+const keys = Array.from(Array(watches.length).keys());
 
 const Carousel = () => {
 	const [items, setItems] = React.useState(keys);
 	const [isTicking, setIsTicking] = React.useState(false);
 	const [activeIdx, setActiveIdx] = React.useState(0);
+	console.log(activeIdx);
 	const bigLength = items.length;
 	// HANDLING LEFT ARROW
 	const prevClick = (jump = 1) => {
@@ -165,15 +208,15 @@ const Carousel = () => {
 			});
 		}
 	};
+	// TICKING
+	React.useEffect(() => {
+		if (isTicking) sleep(300).then(() => setIsTicking(false));
+	}, [isTicking]);
 	// HANDLING DOT CLICKS
 	const handleDotClick = (idx) => {
 		if (idx < activeIdx) prevClick(activeIdx - idx);
 		if (idx > activeIdx) nextClick(idx - activeIdx);
 	};
-	// TICKING
-	React.useEffect(() => {
-		if (isTicking) sleep(300).then(() => setIsTicking(false));
-	}, [isTicking]);
 	// UPDATING ACTIVE INDEX
 	React.useEffect(() => {
 		setActiveIdx((length - (items[0] % length)) % length);
@@ -189,13 +232,13 @@ const Carousel = () => {
                 w-4/5
                 items-center 
                 justify-center 
-                bg-red"
+                bg-brown-gold"
 		>
 			{/* INNER CONTAINER */}
 			<div
 				className={`
                     relative 
-                    bg-yellow
+                    bg-brown-gold
                     p-2
                 `}
 				style={{
@@ -207,27 +250,17 @@ const Carousel = () => {
 				<button
 					className="
                         absolute 
-                        left-[-10rem] 
+                        left-[-5rem] 
                         top-2/4 
                         flex
-                        -translate-y-2/4 
+                        -translate-y-2/4
                         cursor-pointer 
                         items-center 
                         justify-center 
                         border-0"
 					onClick={() => prevClick()}
 				>
-					<i
-						className="
-                            border-[0 0.4rem 0.4rem 0] 
-                            z-10
-                            h-24 
-                            w-24 
-                            rotate-[135deg] 
-                            border-solid 
-                            bg-white 
-                            p-[3px]"
-					/>
+					<ChevronLeftIcon className="h-20 w-20 text-white" />
 				</button>
 				{/* OVERFLOW ITEMS CONTAINER */}
 				<div
@@ -263,7 +296,7 @@ const Carousel = () => {
 				<button
 					className="
                         absolute 
-                        right-[-10rem] 
+                        right-[-5rem] 
                         top-2/4 flex 
                         -translate-y-2/4 
                         cursor-pointer 
@@ -272,17 +305,7 @@ const Carousel = () => {
                         border-0"
 					onClick={() => nextClick()}
 				>
-					<i
-						className="
-                            border-[0 0.4rem 0.4rem 0] 
-                            z-10 
-                            h-24 
-                            w-24
-                            -rotate-45
-                            border-solid 
-                            bg-white 
-                            p-[3px]"
-					/>
+					<ChevronRightIcon className="h-20 w-20 text-white" />
 				</button>
 				{/* DOT NAVIGATION */}
 				<div

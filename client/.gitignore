@@ -16,3 +16,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+#video
+/public/assets/presentation.mp4
+/src/assets/presentation.mp4
