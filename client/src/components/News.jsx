@@ -10,7 +10,7 @@ const News = () => {
                 flex-wrap 
                 items-center 
                 justify-center 
-                bg-white 
+                bg-white-gold
                 pb-5 
                 md:flex-row"
 		>
@@ -26,10 +26,22 @@ const News = () => {
 			>
 				CURRENT HIGHLIGHTS
 			</div>
-			<Card type="New/Collection" title="Something happened" />
-			<Card type="News" title="Something happened" />
+			<Card
+				type="NEW COLLECTION"
+				title="Explore the newest Nomad collection of luxurious watches"
+				image="../assets/collection.avif"
+			/>
+			<Card
+				type="THE HISTORY OF AMIR WATCHES"
+				title="Discover the roots and aspirations of our company"
+				image="../assets/taraz.jpg"
+			/>
 
-			<Card type="News" title="Something happened" />
+			<Card
+				type="CAREER OPPORTUNITIES"
+				title="Become a part of Amir Watches LTD"
+				image="../assets/vacancy.webp"
+			/>
 			<div
 				className="
                     flex 
@@ -41,8 +53,9 @@ const News = () => {
 				<button
 					className=" 
                     border-[2px] 
-                    border-white-gold 
-                    px-10 
+                    border-dark-gold 
+                    px-14
+                    
                     py-2"
 				>
 					More
